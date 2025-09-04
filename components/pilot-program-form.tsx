@@ -104,6 +104,9 @@ export function PilotProgramForm() {
           dataNeeds: '',
         })
         setRecaptchaToken(null)
+        if (recaptchaRef.current) {
+          recaptchaRef.current.resetRecaptcha()
+        }
       } else {
         setMessage({ type: 'error', text: result.error || 'Failed to submit application. Please try again.' })
       }

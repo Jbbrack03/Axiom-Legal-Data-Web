@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
+import { useEffect, useRef, useImperativeHandle, forwardRef, useId } from 'react'
+import RecaptchaManager from '@/lib/recaptcha-manager'
 
 declare global {
   interface Window {
     grecaptcha: any
-    onRecaptchaLoad?: () => void
   }
 }
 
@@ -16,22 +16,27 @@ interface RecaptchaWrapperProps {
 
 export interface RecaptchaWrapperRef {
   executeRecaptcha: () => void
+  resetRecaptcha: () => void
 }
 
 export const RecaptchaWrapper = forwardRef<RecaptchaWrapperRef, RecaptchaWrapperProps>(
   ({ onVerify, onError }, ref) => {
     const recaptchaRef = useRef<HTMLDivElement>(null)
-    const widgetId = useRef<number | null>(null)
-    const scriptLoaded = useRef<boolean>(false)
+    const containerId = useId()
+    const managerRef = useRef<RecaptchaManager>(RecaptchaManager.getInstance())
+    const isInitialized = useRef<boolean>(false)
 
     const executeRecaptcha = () => {
-      if (window.grecaptcha && widgetId.current !== null) {
-        window.grecaptcha.execute(widgetId.current)
-      }
+      managerRef.current.executeWidget(containerId)
+    }
+
+    const resetRecaptcha = () => {
+      managerRef.current.resetWidget(containerId)
     }
 
     useImperativeHandle(ref, () => ({
-      executeRecaptcha
+      executeRecaptcha,
+      resetRecaptcha
     }))
 
     useEffect(() => {
@@ -43,88 +48,38 @@ export const RecaptchaWrapper = forwardRef<RecaptchaWrapperRef, RecaptchaWrapper
         return
       }
 
-      const initRecaptcha = () => {
-        if (window.grecaptcha && window.grecaptcha.render && recaptchaRef.current) {
-          // Clean up existing widget if present
-          if (widgetId.current !== null) {
-            try {
-              window.grecaptcha.reset(widgetId.current)
-            } catch (e) {
-              console.warn('Failed to reset reCAPTCHA:', e)
-            }
-            widgetId.current = null
-          }
+      if (!recaptchaRef.current || isInitialized.current) {
+        return
+      }
 
-          // Clear the container
-          if (recaptchaRef.current) {
-            recaptchaRef.current.innerHTML = ''
-          }
-
-          try {
-            widgetId.current = window.grecaptcha.render(recaptchaRef.current, {
-              sitekey: siteKey,
-              size: 'invisible',
-              callback: onVerify,
-              'error-callback': onError,
-            })
-          } catch (e) {
-            console.error('Failed to render reCAPTCHA:', e)
-            onError?.()
-          }
+      const initWidget = async () => {
+        try {
+          await managerRef.current.createWidget(
+            containerId,
+            recaptchaRef.current!,
+            siteKey,
+            onVerify,
+            onError
+          )
+          isInitialized.current = true
+        } catch (error) {
+          console.error('Failed to initialize reCAPTCHA:', error)
+          onError?.()
         }
       }
 
-      const loadRecaptcha = () => {
-        if (scriptLoaded.current) {
-          initRecaptcha()
-          return
-        }
-
-        if (!window.grecaptcha) {
-          const existingScript = document.querySelector('script[src*="recaptcha"]')
-          if (existingScript) {
-            existingScript.remove()
-          }
-
-          const script = document.createElement('script')
-          script.src = `https://www.google.com/recaptcha/api.js?render=explicit&onload=onRecaptchaLoad`
-          script.async = true
-          script.defer = true
-          
-          // Use a global callback to ensure proper loading
-          window.onRecaptchaLoad = () => {
-            scriptLoaded.current = true
-            initRecaptcha()
-          }
-
-          script.onerror = () => {
-            console.error('Failed to load reCAPTCHA script')
-            onError?.()
-          }
-
-          document.head.appendChild(script)
-        } else {
-          scriptLoaded.current = true
-          initRecaptcha()
-        }
-      }
-
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(loadRecaptcha, 100)
+      initWidget()
 
       return () => {
-        clearTimeout(timer)
-        if (widgetId.current !== null && window.grecaptcha) {
-          try {
-            window.grecaptcha.reset(widgetId.current)
-          } catch (e) {
-            console.warn('Cleanup: Failed to reset reCAPTCHA:', e)
-          }
-          widgetId.current = null
+        if (isInitialized.current) {
+          managerRef.current.destroyWidget(containerId)
+          isInitialized.current = false
         }
       }
-    }, [onVerify, onError])
+    }, [containerId, onVerify, onError])
 
     return <div ref={recaptchaRef} />
   }
 )
+
+RecaptchaWrapper.displayName = 'RecaptchaWrapper'
