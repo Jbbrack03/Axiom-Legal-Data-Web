@@ -32,6 +32,7 @@ export function ContactForm() {
   }
 
   const handleRecaptchaVerify = (token: string) => {
+    console.log('reCAPTCHA verified successfully, token received')
     setRecaptchaToken(token)
     // Resolve the promise if one is waiting
     if (recaptchaPromiseRef.current) {
@@ -41,6 +42,7 @@ export function ContactForm() {
   }
 
   const handleRecaptchaError = () => {
+    console.log('reCAPTCHA verification failed')
     setMessage({ type: 'error', text: 'CAPTCHA verification failed. Please try again.' })
     // Reject the promise if one is waiting
     if (recaptchaPromiseRef.current) {
@@ -50,11 +52,14 @@ export function ContactForm() {
   }
 
   const executeRecaptcha = (): Promise<string> => {
+    console.log('executeRecaptcha called')
     return new Promise((resolve, reject) => {
       if (recaptchaRef.current) {
+        console.log('Creating reCAPTCHA promise and executing')
         recaptchaPromiseRef.current = { resolve, reject }
         recaptchaRef.current.executeRecaptcha()
       } else {
+        console.error('recaptchaRef.current is null')
         reject(new Error('reCAPTCHA not available'))
       }
     })
@@ -75,10 +80,13 @@ export function ContactForm() {
     // Execute reCAPTCHA
     if (!recaptchaToken) {
       try {
+        console.log('Executing reCAPTCHA for form submission...')
+        
         // Create a cancellable timeout
         let timeoutId: NodeJS.Timeout
         const timeoutPromise = new Promise<never>((_, reject) => {
           timeoutId = setTimeout(() => {
+            console.log('reCAPTCHA verification timed out')
             reject(new Error('CAPTCHA verification timed out'))
           }, 10000)
         })
@@ -91,6 +99,7 @@ export function ContactForm() {
 
         // Cancel the timeout since we got the token
         clearTimeout(timeoutId!)
+        console.log('reCAPTCHA token received, proceeding with form submission')
         setRecaptchaToken(token)
         await submitForm(token)
         
