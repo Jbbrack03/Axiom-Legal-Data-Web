@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Navigation } from "@/components/navigation"
+import { ContactForm } from "@/components/contact-form"
 import { Mail, MapPin, Clock } from "lucide-react"
 
 export default function ContactPage() {
@@ -79,93 +76,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-[#0A192F] border-[#CCD6F6]/20">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">Send us a Message</CardTitle>
-              <CardDescription className="text-[#CCD6F6]">
-                Fill out the form below and we'll get back to you within 24 hours.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-white">
-                      First Name
-                    </Label>
-                    <Input
-                      id="firstName"
-                      placeholder="John"
-                      className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA]"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-white">
-                      Last Name
-                    </Label>
-                    <Input
-                      id="lastName"
-                      placeholder="Doe"
-                      className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA]"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="john@company.com"
-                    className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA]"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-white">
-                    Company
-                  </Label>
-                  <Input
-                    id="company"
-                    placeholder="Your Company Name"
-                    className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA]"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-white">
-                    Subject
-                  </Label>
-                  <Input
-                    id="subject"
-                    placeholder="How can we help you?"
-                    className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA]"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-white">
-                    Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell us about your legal data challenges and how we can help..."
-                    rows={5}
-                    className="bg-[#0A192F] border-[#CCD6F6]/30 text-white placeholder:text-[#CCD6F6]/50 focus:border-[#64FFDA] resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-[#64FFDA] text-[#0A192F] hover:bg-[#64FFDA]/90 font-semibold py-3"
-                >
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+          <ContactForm />
         </div>
       </main>
     </div>

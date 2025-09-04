@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { PilotProgramForm } from "@/components/pilot-program-form"
 
 export default function PilotProgramPage() {
   return (
@@ -63,72 +61,7 @@ export default function PilotProgramPage() {
           </div>
 
           {/* Right Column - Application Form */}
-          <Card className="bg-card border-border">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">Apply for a Spot.</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">
-                  Full Name *
-                </label>
-                <Input
-                  id="fullName"
-                  className="bg-input border-border text-white placeholder:text-muted-foreground"
-                  placeholder="John Doe"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="workEmail" className="block text-sm font-medium text-foreground mb-2">
-                  Work Email *
-                </label>
-                <Input
-                  id="workEmail"
-                  type="email"
-                  className="bg-input border-border text-white placeholder:text-muted-foreground"
-                  placeholder="john@company.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-foreground mb-2">
-                  Company Name *
-                </label>
-                <Input
-                  id="companyName"
-                  className="bg-input border-border text-white placeholder:text-muted-foreground"
-                  placeholder="Your Company"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="role" className="block text-sm font-medium text-foreground mb-2">
-                  Role *
-                </label>
-                <Input
-                  id="role"
-                  className="bg-input border-border text-white placeholder:text-muted-foreground"
-                  placeholder="e.g., CTO, Founder, Head of AI"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="dataNeeds" className="block text-sm font-medium text-foreground mb-2">
-                  Briefly describe your data needs. *
-                </label>
-                <Textarea
-                  id="dataNeeds"
-                  className="bg-input border-border text-white placeholder:text-muted-foreground min-h-[120px]"
-                  placeholder="Tell us about your specific data requirements and use cases..."
-                />
-              </div>
-
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                Submit Application
-              </Button>
-            </CardContent>
-          </Card>
+          <PilotProgramForm />
         </div>
 
         {/* Additional Info */}

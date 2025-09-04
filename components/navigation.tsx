@@ -22,6 +22,12 @@ export function Navigation() {
             Methodology
           </Link>
           <Link
+            href="/blog"
+            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
             href="/pilot-program"
             className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
