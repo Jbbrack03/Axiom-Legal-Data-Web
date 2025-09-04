@@ -54,7 +54,6 @@ export const RecaptchaWrapper = forwardRef<RecaptchaWrapperRef, RecaptchaWrapper
 
       const initWidget = async () => {
         try {
-          console.log('Initializing reCAPTCHA widget...')
           await managerRef.current.createWidget(
             containerId,
             recaptchaRef.current!,
@@ -63,12 +62,8 @@ export const RecaptchaWrapper = forwardRef<RecaptchaWrapperRef, RecaptchaWrapper
             onError
           )
           isInitialized.current = true
-          console.log('reCAPTCHA widget initialized successfully')
         } catch (error) {
-          console.error('Failed to initialize reCAPTCHA widget:', error)
-          if (error instanceof Error) {
-            console.error('Error details:', error.message)
-          }
+          console.error('Failed to initialize reCAPTCHA:', error)
           onError?.()
         }
       }

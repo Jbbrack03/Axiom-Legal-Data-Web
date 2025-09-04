@@ -56,7 +56,6 @@ class RecaptchaManager {
 
       // Use a unique global callback name
       ;(window as any).grecaptchaCallback = () => {
-        console.log('reCAPTCHA script loaded successfully')
         if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
           this.scriptLoaded = true
           this.scriptLoading = false
@@ -129,8 +128,6 @@ class RecaptchaManager {
     element.innerHTML = ''
 
     try {
-      console.log('Creating reCAPTCHA widget with site key:', siteKey.substring(0, 10) + '...')
-      
       const widgetId = window.grecaptcha.render(element, {
         sitekey: siteKey,
         size: 'invisible',
@@ -143,7 +140,6 @@ class RecaptchaManager {
       }
 
       this.widgets.set(containerId, widgetId)
-      console.log('reCAPTCHA widget created successfully with ID:', widgetId)
       return widgetId
     } catch (error) {
       console.error('Failed to create reCAPTCHA widget:', error)

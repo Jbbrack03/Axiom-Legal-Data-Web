@@ -2,7 +2,6 @@ import { CheckCircle, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PilotProgramForm } from "@/components/pilot-program-form"
-import { RecaptchaDebug } from "@/components/recaptcha-debug"
 
 export default function PilotProgramPage() {
   return (
@@ -62,10 +61,7 @@ export default function PilotProgramPage() {
           </div>
 
           {/* Right Column - Application Form */}
-          <div className="space-y-4">
-            <PilotProgramForm />
-            <RecaptchaDebug />
-          </div>
+          <PilotProgramForm />
         </div>
 
         {/* Additional Info */}
