@@ -155,10 +155,17 @@ class RecaptchaManager {
     const widgetId = this.widgets.get(containerId)
     if (widgetId !== undefined && window.grecaptcha) {
       try {
-        window.grecaptcha.execute(widgetId)
+        if (typeof window.grecaptcha.execute === 'function') {
+          console.log('Executing reCAPTCHA widget:', widgetId)
+          window.grecaptcha.execute(widgetId)
+        } else {
+          console.error('reCAPTCHA execute function not available')
+        }
       } catch (error) {
         console.error('Failed to execute reCAPTCHA:', error)
       }
+    } else {
+      console.error('Widget not found for container:', containerId, 'Available widgets:', Array.from(this.widgets.keys()))
     }
   }
 

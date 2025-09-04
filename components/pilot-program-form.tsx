@@ -29,16 +29,22 @@ export function PilotProgramForm() {
   }
 
   const handleRecaptchaVerify = (token: string) => {
+    console.log('reCAPTCHA verified successfully, token received')
     setRecaptchaToken(token)
   }
 
   const handleRecaptchaError = () => {
+    console.log('reCAPTCHA verification failed')
     setMessage({ type: 'error', text: 'CAPTCHA verification failed. Please try again.' })
   }
 
   const executeRecaptcha = () => {
+    console.log('executeRecaptcha called')
     if (recaptchaRef.current) {
+      console.log('Calling executeRecaptcha on ref')
       recaptchaRef.current.executeRecaptcha()
+    } else {
+      console.error('recaptchaRef.current is null')
     }
   }
 
@@ -56,10 +62,12 @@ export function PilotProgramForm() {
 
     // Execute reCAPTCHA
     if (!recaptchaToken) {
+      console.log('Executing reCAPTCHA for form submission...')
       executeRecaptcha()
       
       // Wait for token (with timeout)
       const timeout = setTimeout(() => {
+        console.log('reCAPTCHA verification timed out')
         setMessage({ type: 'error', text: 'CAPTCHA verification timed out. Please try again.' })
         setIsLoading(false)
       }, 10000)
@@ -67,6 +75,7 @@ export function PilotProgramForm() {
       // Check for token every 100ms
       const checkToken = setInterval(() => {
         if (recaptchaToken) {
+          console.log('reCAPTCHA token received, proceeding with form submission')
           clearInterval(checkToken)
           clearTimeout(timeout)
           submitForm()
