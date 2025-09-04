@@ -19,6 +19,7 @@ export function PilotProgramForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
+  const recaptchaPromiseRef = useRef<{resolve: (token: string) => void, reject: () => void} | null>(null)
   const recaptchaRef = useRef<RecaptchaWrapperRef>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,21 +32,35 @@ export function PilotProgramForm() {
   const handleRecaptchaVerify = (token: string) => {
     console.log('reCAPTCHA verified successfully, token received')
     setRecaptchaToken(token)
+    // Resolve the promise if one is waiting
+    if (recaptchaPromiseRef.current) {
+      recaptchaPromiseRef.current.resolve(token)
+      recaptchaPromiseRef.current = null
+    }
   }
 
   const handleRecaptchaError = () => {
     console.log('reCAPTCHA verification failed')
     setMessage({ type: 'error', text: 'CAPTCHA verification failed. Please try again.' })
+    // Reject the promise if one is waiting
+    if (recaptchaPromiseRef.current) {
+      recaptchaPromiseRef.current.reject()
+      recaptchaPromiseRef.current = null
+    }
   }
 
-  const executeRecaptcha = () => {
+  const executeRecaptcha = (): Promise<string> => {
     console.log('executeRecaptcha called')
-    if (recaptchaRef.current) {
-      console.log('Calling executeRecaptcha on ref')
-      recaptchaRef.current.executeRecaptcha()
-    } else {
-      console.error('recaptchaRef.current is null')
-    }
+    return new Promise((resolve, reject) => {
+      if (recaptchaRef.current) {
+        console.log('Creating reCAPTCHA promise and executing')
+        recaptchaPromiseRef.current = { resolve, reject }
+        recaptchaRef.current.executeRecaptcha()
+      } else {
+        console.error('recaptchaRef.current is null')
+        reject(new Error('reCAPTCHA not available'))
+      }
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,33 +77,40 @@ export function PilotProgramForm() {
 
     // Execute reCAPTCHA
     if (!recaptchaToken) {
-      console.log('Executing reCAPTCHA for form submission...')
-      executeRecaptcha()
-      
-      // Wait for token (with timeout)
-      const timeout = setTimeout(() => {
-        console.log('reCAPTCHA verification timed out')
-        setMessage({ type: 'error', text: 'CAPTCHA verification timed out. Please try again.' })
-        setIsLoading(false)
-      }, 10000)
+      try {
+        console.log('Executing reCAPTCHA for form submission...')
+        
+        // Create a timeout promise
+        const timeoutPromise = new Promise<never>((_, reject) => {
+          setTimeout(() => {
+            console.log('reCAPTCHA verification timed out')
+            reject(new Error('CAPTCHA verification timed out'))
+          }, 10000)
+        })
 
-      // Check for token every 100ms
-      const checkToken = setInterval(() => {
-        if (recaptchaToken) {
-          console.log('reCAPTCHA token received, proceeding with form submission')
-          clearInterval(checkToken)
-          clearTimeout(timeout)
-          submitForm()
-        }
-      }, 100)
-      
+        // Race between reCAPTCHA execution and timeout
+        const token = await Promise.race([
+          executeRecaptcha(),
+          timeoutPromise
+        ])
+
+        console.log('reCAPTCHA token received, proceeding with form submission')
+        setRecaptchaToken(token)
+        await submitForm(token)
+        
+      } catch (error) {
+        console.error('reCAPTCHA execution failed:', error)
+        setMessage({ type: 'error', text: 'CAPTCHA verification failed. Please try again.' })
+        setIsLoading(false)
+      }
       return
     }
 
     await submitForm()
   }
 
-  const submitForm = async () => {
+  const submitForm = async (token?: string) => {
+    const tokenToUse = token || recaptchaToken
     try {
       const response = await fetch('/api/pilot-program', {
         method: 'POST',
@@ -97,7 +119,7 @@ export function PilotProgramForm() {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken,
+          recaptchaToken: tokenToUse,
         }),
       })
 
