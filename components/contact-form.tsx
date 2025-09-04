@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { RecaptchaWrapper } from './recaptcha-wrapper'
+import { RecaptchaWrapper, RecaptchaWrapperRef } from './recaptcha-wrapper'
 import { Loader2 } from 'lucide-react'
 
 export function ContactForm() {
@@ -21,7 +21,7 @@ export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
-  const recaptchaRef = useRef<HTMLDivElement>(null)
+  const recaptchaRef = useRef<RecaptchaWrapperRef>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -39,8 +39,8 @@ export function ContactForm() {
   }
 
   const executeRecaptcha = () => {
-    if (recaptchaRef.current && (recaptchaRef.current as any).executeRecaptcha) {
-      (recaptchaRef.current as any).executeRecaptcha()
+    if (recaptchaRef.current) {
+      recaptchaRef.current.executeRecaptcha()
     }
   }
 
