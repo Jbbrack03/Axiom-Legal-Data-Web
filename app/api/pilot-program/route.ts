@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     })
     
     const emailData = {
-      from: process.env.FROM_EMAIL || 'no-reply@axiomlegaldata.com',
+      from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
       to: [process.env.TO_EMAIL || 'contact@axiomlegaldata.com'],
       subject: `New Pilot Program Application - ${validatedData.companyName}`,
       html: `

@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     // Send email notification
     const emailData = {
-      from: process.env.FROM_EMAIL || 'no-reply@axiomlegaldata.com',
+      from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
       to: [process.env.TO_EMAIL || 'contact@axiomlegaldata.com'],
       subject: `Contact Form: ${validatedData.subject}`,
       html: `
