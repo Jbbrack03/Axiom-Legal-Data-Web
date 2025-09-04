@@ -121,8 +121,11 @@ class RecaptchaManager {
       throw new Error('reCAPTCHA render function not available')
     }
 
-    // Destroy existing widget if it exists
-    this.destroyWidget(containerId)
+    // Check if widget already exists for this container
+    if (this.widgets.has(containerId)) {
+      console.warn('reCAPTCHA widget already exists for container:', containerId)
+      return this.widgets.get(containerId)!
+    }
 
     // Clear the container
     element.innerHTML = ''
@@ -174,9 +177,12 @@ class RecaptchaManager {
     const widgetId = this.widgets.get(containerId)
     if (widgetId !== undefined && window.grecaptcha) {
       try {
-        window.grecaptcha.reset(widgetId)
+        // Only reset if the widget still exists
+        if (typeof window.grecaptcha.reset === 'function') {
+          window.grecaptcha.reset(widgetId)
+        }
       } catch (error) {
-        console.warn('Failed to reset widget during destroy:', error)
+        // Ignore errors during cleanup - widget might already be destroyed
       }
       this.widgets.delete(containerId)
     }
