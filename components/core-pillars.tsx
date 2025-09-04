@@ -7,6 +7,8 @@ export function CorePillars() {
       title: "Unimpeachable Quality.",
       description:
         "Our data is rigorously validated using a 'Train on Synthetic, Test on Real' (TSTR) methodology and benchmarked against LegalBench to ensure statistical integrity and real-world performance.",
+      additionalText:
+        "Our pilot program includes access to datasets benchmarked against LegalBench. Apply to be among the first to validate our data.",
     },
     {
       icon: Shield,
@@ -23,7 +25,7 @@ export function CorePillars() {
   ]
 
   return (
-    <section className="container max-w-screen-xl mx-auto px-4 py-32">
+    <section id="methodology" className="container max-w-screen-xl mx-auto px-4 py-32">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">The Foundation for Modern Legal AI.</h2>
       </div>
@@ -38,6 +40,9 @@ export function CorePillars() {
               </div>
               <h3 className="text-xl font-bold text-white">{pillar.title}</h3>
               <p className="text-foreground leading-relaxed">{pillar.description}</p>
+              {pillar.additionalText && (
+                <p className="text-sm text-muted-foreground leading-relaxed italic">{pillar.additionalText}</p>
+              )}
             </div>
           )
         })}

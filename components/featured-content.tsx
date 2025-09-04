@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export function FeaturedContent() {
   const articles = [
@@ -28,21 +29,20 @@ export function FeaturedContent() {
 
       <div className="grid md:grid-cols-3 gap-8">
         {articles.map((article, index) => (
-          <Card
-            key={index}
-            className="bg-card border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
-          >
-            <CardHeader>
-              <CardTitle className="text-white text-lg leading-tight">{article.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground leading-relaxed">{article.excerpt}</p>
-              <div className="flex items-center text-primary group-hover:text-primary/80 transition-colors">
-                <span className="text-sm font-medium">Read More</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </CardContent>
-          </Card>
+          <Link key={index} href="/methodology">
+            <Card className="bg-card border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer group h-full">
+              <CardHeader>
+                <CardTitle className="text-white text-lg leading-tight">{article.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground leading-relaxed">{article.excerpt}</p>
+                <div className="flex items-center text-primary group-hover:text-primary/80 transition-colors">
+                  <span className="text-sm font-medium">Read More</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
     </section>
