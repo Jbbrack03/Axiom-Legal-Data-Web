@@ -33,12 +33,17 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('Pilot program API endpoint called')
     const body = await request.json()
+    console.log('Request body received:', { ...body, recaptchaToken: '[REDACTED]' })
     const validatedData = PilotProgramSchema.parse(body)
 
     // Verify reCAPTCHA
+    console.log('Verifying reCAPTCHA token...')
     const isValidCaptcha = await verifyRecaptcha(validatedData.recaptchaToken)
+    console.log('reCAPTCHA verification result:', isValidCaptcha)
     if (!isValidCaptcha) {
+      console.log('reCAPTCHA verification failed')
       return NextResponse.json(
         { error: 'CAPTCHA verification failed' },
         { status: 400 }
@@ -46,6 +51,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification
+    console.log('Email config check:', {
+      hasResendKey: !!process.env.RESEND_API_KEY,
+      fromEmail: process.env.FROM_EMAIL || 'no-reply@axiomlegaldata.com',
+      toEmail: process.env.TO_EMAIL || 'contact@axiomlegaldata.com'
+    })
+    
     const emailData = {
       from: process.env.FROM_EMAIL || 'no-reply@axiomlegaldata.com',
       to: [process.env.TO_EMAIL || 'contact@axiomlegaldata.com'],
@@ -78,7 +89,9 @@ export async function POST(request: NextRequest) {
       `,
     }
 
-    await resend.emails.send(emailData)
+    console.log('Sending email notification...')
+    const emailResult = await resend.emails.send(emailData)
+    console.log('Email send result:', emailResult)
 
     return NextResponse.json(
       { message: 'Application submitted successfully' },

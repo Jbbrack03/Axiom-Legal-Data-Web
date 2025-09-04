@@ -80,9 +80,10 @@ export function PilotProgramForm() {
       try {
         console.log('Executing reCAPTCHA for form submission...')
         
-        // Create a timeout promise
+        // Create a cancellable timeout
+        let timeoutId: NodeJS.Timeout
         const timeoutPromise = new Promise<never>((_, reject) => {
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             console.log('reCAPTCHA verification timed out')
             reject(new Error('CAPTCHA verification timed out'))
           }, 10000)
@@ -94,6 +95,8 @@ export function PilotProgramForm() {
           timeoutPromise
         ])
 
+        // Cancel the timeout since we got the token
+        clearTimeout(timeoutId!)
         console.log('reCAPTCHA token received, proceeding with form submission')
         setRecaptchaToken(token)
         await submitForm(token)
