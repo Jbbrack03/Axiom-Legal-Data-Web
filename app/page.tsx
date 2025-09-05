@@ -1,11 +1,12 @@
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { EnhancedFeatures } from "@/components/enhanced-features"
-import { DataPipeline } from "@/components/data-pipeline"
+import { AnimatedDataPipeline } from "@/components/animated-data-pipeline"
 import { CredibilitySection } from "@/components/credibility-section"
-import { TechnicalDeepDive } from "@/components/technical-deep-dive"
+import { InteractiveQualityStandard } from "@/components/interactive-quality-standard"
 import { FounderSection } from "@/components/founder-section"
-import { FeaturedContent } from "@/components/featured-content"
+import { EnhancedFeaturedContent } from "@/components/enhanced-featured-content"
+import { PilotProgramBenefits } from "@/components/pilot-program-benefits"
 import { FinalCTA } from "@/components/final-cta"
 
 export default function HomePage() {
@@ -15,11 +16,12 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <EnhancedFeatures />
-        <DataPipeline />
+        <AnimatedDataPipeline />
         <CredibilitySection />
-        <TechnicalDeepDive />
+        <InteractiveQualityStandard />
         <FounderSection />
-        <FeaturedContent />
+        <EnhancedFeaturedContent />
+        <PilotProgramBenefits />
         <FinalCTA />
       </main>
     </div>
