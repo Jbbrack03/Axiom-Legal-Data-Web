@@ -14,7 +14,7 @@ export function FounderSection() {
         <div className="flex justify-center md:justify-end">
           <div className="relative">
             <Image
-              src="/josh-headshot.png"
+              src="/founder-headshot.png"
               alt="Josh Brackin, Founder of Axiom Legal Data"
               width={300}
               height={300}
@@ -29,16 +29,11 @@ export function FounderSection() {
 
           <div className="space-y-4 text-foreground leading-relaxed">
             <p>
-              My career was forged over a decade managing enterprise support at Apple, where 'good enough' is never an
-              option. You learn to build systems and processes that are reliable, scalable, and deliver an unimpeachable
-              user experience.
+              My career was forged over a decade of managing people and systems for corporate America, where 'good enough' is never an option. You learn to build systems and processes that are reliable, scalable, and deliver an unimpeachable user experience.
             </p>
 
             <p>
-              When I began my deep dive into AI, I saw that the foundational data used in legal tech didn't meet that
-              standard. It was brittle, legally risky, and often failed the customer before the product was even built.
-              Axiom was born from a simple idea: to bring an Apple-level standard of quality and reliability to the
-              foundational data that powers legal AI.
+              When I began my deep dive into AI, I saw that the foundational data used in legal tech didn't meet that standard. It was brittle, legally risky, and often failed the customer before the product was even built. Axiom was born from a simple idea: to bring an exceptional standard of quality and reliability to the foundational data that powers legal AI.
             </p>
           </div>
 
