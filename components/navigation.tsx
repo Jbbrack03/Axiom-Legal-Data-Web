@@ -20,12 +20,6 @@ export function Navigation() {
           <div className="hidden md:flex items-center justify-center">
             <div className="flex items-center space-x-8">
               <Link
-                href="/methodology"
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                Methodology
-              </Link>
-              <Link
                 href="/blog"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
