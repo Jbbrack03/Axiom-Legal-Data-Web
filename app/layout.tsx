@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   description:
     "Empower legal tech innovators to train AI models with high-fidelity, legally defensible synthetic data. Build with confidence, without prohibitive costs and legal risks.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.svg",
+  },
   alternates: {
     types: {
       'application/rss+xml': [

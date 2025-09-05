@@ -1,20 +1,13 @@
-import { CheckCircle, ArrowLeft } from "lucide-react"
+import { CheckCircle } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PilotProgramForm } from "@/components/pilot-program-form"
+import { Navigation } from "@/components/navigation"
 
 export default function PilotProgramPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </Link>
-        </div>
-      </header>
+      <Navigation />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
