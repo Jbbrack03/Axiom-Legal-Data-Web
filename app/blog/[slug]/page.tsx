@@ -4,9 +4,9 @@ import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { CalendarDays, User, ArrowLeft, Share2 } from 'lucide-react'
+import { CalendarDays, User, ArrowLeft } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { ShareButton } from '@/components/share-button'
 
 interface BlogPostPageProps {
   params: {
@@ -226,25 +226,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <CalendarDays className="w-4 h-4" />
                 <span>{formatDate(post.publishedAt)}</span>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-muted-foreground hover:text-white"
-                onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: post.title,
-                      text: post.excerpt,
-                      url: window.location.href,
-                    })
-                  } else {
-                    navigator.clipboard.writeText(window.location.href)
-                  }
-                }}
-              >
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
-              </Button>
+              <ShareButton title={post.title} excerpt={post.excerpt} />
             </div>
 
             {/* Hero Image */}
