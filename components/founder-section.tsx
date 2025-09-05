@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button"
-import { Linkedin } from "lucide-react"
 import Image from "next/image"
 
 export function FounderSection() {
@@ -33,15 +31,6 @@ export function FounderSection() {
             </p>
           </div>
 
-          <div className="pt-4">
-            <Button
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-            >
-              <Linkedin className="w-4 h-4 mr-2" />
-              Connect on LinkedIn
-            </Button>
-          </div>
         </div>
       </div>
     </section>
