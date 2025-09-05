@@ -70,7 +70,7 @@ export default function PilotProgramPage() {
           <p className="text-foreground mb-6">
             Our team is here to help you understand how Axiom Legal Data can transform your practice.
           </p>
-          <Link href="mailto:pilot@axiomlegaldata.com?subject=Pilot Program Inquiry">
+          <Link href="mailto:contact@axiomlegaldata.com?subject=Pilot Program Inquiry">
             <Button
               variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
