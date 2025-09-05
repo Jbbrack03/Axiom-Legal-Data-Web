@@ -52,22 +52,27 @@ export function EnhancedFeatures() {
         {features.map((feature, index) => {
           const IconComponent = feature.icon
           return (
-            <div key={index} className="space-y-6">
-              <div className="flex items-center space-x-4">
+            <div key={index} className="space-y-6 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start space-x-4">
                 <div className="bg-primary/10 rounded-xl p-3 border border-primary/20">
                   <IconComponent className="w-8 h-8 text-primary" strokeWidth={1.5} />
                 </div>
-                <div>
+                <div className="hidden md:block">
                   <h3 className="text-xl font-bold text-white">{feature.title}</h3>
                   <p className="text-primary font-medium">{feature.subtitle}</p>
                 </div>
+              </div>
+
+              <div className="md:hidden">
+                <h3 className="text-xl font-bold text-white">{feature.title}</h3>
+                <p className="text-primary font-medium">{feature.subtitle}</p>
               </div>
 
               <p className="text-foreground leading-relaxed text-lg">
                 {feature.description}
               </p>
 
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-left">
                 {feature.benefits.map((benefit, benefitIndex) => (
                   <li key={benefitIndex} className="flex items-start space-x-3">
                     <div className="bg-primary/20 rounded-full p-1 mt-1 flex-shrink-0">

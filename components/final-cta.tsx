@@ -17,9 +17,10 @@ export function FinalCTA() {
           <Link href="/pilot-program">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-4 h-auto"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-6 md:px-8 py-4 h-auto w-full max-w-md md:max-w-none md:w-auto"
             >
-              Join the Pilot Program - Get 25% Off + Early Access
+              <span className="block md:hidden">Join Pilot Program<br />25% Off + Early Access</span>
+              <span className="hidden md:block">Join the Pilot Program - Get 25% Off + Early Access</span>
             </Button>
           </Link>
           <p className="text-sm text-muted-foreground">

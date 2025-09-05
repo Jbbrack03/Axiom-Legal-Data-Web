@@ -45,8 +45,8 @@ export function PilotProgramBenefits() {
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon
               return (
-                <div key={index} className="bg-background/30 rounded-xl p-6 border border-primary/10 space-y-4">
-                  <div className="flex items-center space-x-3">
+                <div key={index} className="bg-background/30 rounded-xl p-6 border border-primary/10 space-y-4 text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start space-x-3">
                     <div className="bg-primary/10 rounded-lg p-2 border border-primary/20">
                       <IconComponent className="w-5 h-5 text-primary" strokeWidth={2} />
                     </div>
