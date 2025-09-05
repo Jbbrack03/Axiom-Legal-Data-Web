@@ -67,10 +67,10 @@ export function InteractiveQualityStandard() {
       title: "Specialized Dataset Portfolio", 
       description: "Purpose-built datasets for specific legal AI applications",
       details: [
-        "Litigation Response Library: Motion responses and procedural filings",
-        "Contract Clause Generator: Commercial agreements and standardized language",
-        "Legal Brief Corpus: Appellate briefs and legal argumentation",
-        "Regulatory Compliance Suite: Industry-specific legal requirements"
+        "Litigation Response Library: Motion responses and procedural filings (In Development)",
+        "Contract Clause Generator: Commercial agreements and standardized language (In Development)",
+        "Legal Brief Corpus: Appellate briefs and legal argumentation (In Development)",
+        "Regulatory Compliance Suite: Industry-specific legal requirements (In Development)"
       ]
     }
   ]

@@ -10,7 +10,7 @@ export function FinalCTA() {
         </h2>
         
         <p className="text-xl text-foreground max-w-2xl mx-auto leading-relaxed">
-          Get exclusive early access to our Litigation Response Library dataset and receive your complete TSTR validation report the moment it's published.
+          Get exclusive early access to our Litigation Response Library dataset and receive your complete TSTR validation report once development is complete.
         </p>
 
         <div className="pt-8 space-y-4">

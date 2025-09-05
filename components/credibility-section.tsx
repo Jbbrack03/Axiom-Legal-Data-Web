@@ -94,7 +94,7 @@ export function CredibilitySection() {
             Get Early Access to Our Validation Reports
           </h3>
           <p className="text-foreground mb-6 max-w-2xl mx-auto">
-            Join our pilot program to receive exclusive access to our complete TSTR validation report and LegalBench scores the moment they're published.
+            Join our pilot program to receive exclusive access to our complete TSTR validation report and LegalBench scores once development is complete.
           </p>
           <Link href="/pilot-program">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">

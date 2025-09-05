@@ -18,9 +18,9 @@ export function AnimatedDataPipeline() {
   const steps = [
     {
       icon: Database,
-      title: "Public Sources",
-      subtitle: "EDGAR • RECAP",
-      description: "Curated legal documents from trusted public repositories"
+      title: "Trusted Sources",
+      subtitle: "EDGAR • RECAP • & More",
+      description: "Curated legal documents from trusted repositories"
     },
     {
       icon: FileText,

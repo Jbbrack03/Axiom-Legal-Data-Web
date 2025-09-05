@@ -15,7 +15,7 @@ export function PilotProgramBenefits() {
     {
       icon: FileText,
       title: "Complete Transparency",
-      description: "Get a private briefing on our TSTR validation and LegalBench benchmark reports."
+      description: "Receive exclusive access to TSTR validation and LegalBench benchmark reports once development is complete."
     },
     {
       icon: Award,
