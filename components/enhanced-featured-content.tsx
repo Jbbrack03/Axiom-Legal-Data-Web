@@ -33,7 +33,8 @@ export async function EnhancedFeaturedContent() {
       excerpt: "Exploring the critical challenges facing legal AI development and why synthetic data offers a more reliable foundation for building robust systems.",
       publishedAt: "2024-12-15",
       estimatedReadingTime: 8,
-      category: "Industry Analysis"
+      category: "Industry Analysis",
+      slug: null
     },
     {
       _id: "2", 
@@ -41,7 +42,8 @@ export async function EnhancedFeaturedContent() {
       excerpt: "How our comprehensive privacy protection framework ensures complete PII redaction while maintaining data utility for AI training.",
       publishedAt: "2024-12-10",
       estimatedReadingTime: 6,
-      category: "Technology Deep Dive"
+      category: "Technology Deep Dive",
+      slug: null
     },
     {
       _id: "3",
@@ -49,7 +51,8 @@ export async function EnhancedFeaturedContent() {
       excerpt: "Rigorous testing results showing how our synthetic legal data performs against real-world benchmarks and industry standards.",
       publishedAt: "2024-12-05", 
       estimatedReadingTime: 12,
-      category: "Research & Validation"
+      category: "Research & Validation",
+      slug: null
     },
   ]
 
@@ -96,7 +99,7 @@ export async function EnhancedFeaturedContent() {
                   {/* Category & Meta */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      {article.category && (
+                      {'category' in article && article.category && (
                         <span className="inline-block bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full">
                           {article.category}
                         </span>
@@ -106,7 +109,7 @@ export async function EnhancedFeaturedContent() {
                           <Calendar className="w-3 h-3" />
                           <span>{formatDate(article.publishedAt || "")}</span>
                         </div>
-                        {article.estimatedReadingTime && (
+                        {'estimatedReadingTime' in article && article.estimatedReadingTime && (
                           <div className="flex items-center space-x-1">
                             <Clock className="w-3 h-3" />
                             <span>{article.estimatedReadingTime} min read</span>

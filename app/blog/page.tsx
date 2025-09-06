@@ -5,6 +5,21 @@ import Image from 'next/image'
 import { CalendarDays, User, Tag } from 'lucide-react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Blog - Legal AI Insights | Axiom Legal Data',
+  description: 'Deep dives into legal AI, synthetic data generation, and the future of legal technology. Expert insights on TSTR validation, VLM processing, and building unbreakable legal AI systems.',
+  openGraph: {
+    title: 'Blog - Legal AI Insights | Axiom Legal Data',
+    description: 'Expert insights on legal AI, synthetic data generation, and the future of legal technology.',
+    url: 'https://axiomlegaldata.com/blog',
+  },
+  twitter: {
+    title: 'Blog - Legal AI Insights | Axiom Legal Data',
+    description: 'Expert insights on legal AI, synthetic data generation, and the future of legal technology.',
+  },
+}
 
 async function getBlogPosts(): Promise<BlogPost[]> {
   const query = `

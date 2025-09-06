@@ -62,8 +62,7 @@ export function AnimatedDataPipeline() {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   }
@@ -80,7 +79,6 @@ export function AnimatedDataPipeline() {
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
         delay: 0.2
       }
     }

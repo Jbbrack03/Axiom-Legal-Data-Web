@@ -3,6 +3,21 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PilotProgramForm } from "@/components/pilot-program-form"
 import { Navigation } from "@/components/navigation"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Join Pilot Program - Become a Founding Partner | Axiom Legal Data',
+  description: 'Exclusive pilot program for innovative legal tech startups. Get early access to TSTR-validated synthetic legal data, 25% off pricing, and direct founder support. Limited slots available.',
+  openGraph: {
+    title: 'Join Pilot Program - Become a Founding Partner | Axiom Legal Data',
+    description: 'Exclusive pilot program for legal tech innovators. Get early access, preferential pricing, and direct founder support.',
+    url: 'https://axiomlegaldata.com/pilot-program',
+  },
+  twitter: {
+    title: 'Join Pilot Program - Become a Founding Partner | Axiom Legal Data',
+    description: 'Exclusive pilot program for legal tech innovators. Get early access, preferential pricing, and direct founder support.',
+  },
+}
 
 export default function PilotProgramPage() {
   return (

@@ -20,19 +20,42 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Axiom Legal Data - Build Unbreakable Legal AI, Faster",
-  description:
-    "Empower legal tech innovators to train AI models with high-fidelity, legally defensible synthetic data. Build with confidence, without prohibitive costs and legal risks.",
+  description: "Empower legal tech innovators to train AI models with high-fidelity, legally defensible synthetic data. Build with confidence, without prohibitive costs and legal risks.",
   generator: "v0.app",
-  icons: {
-    icon: "/favicon.svg",
-  },
+  metadataBase: new URL('https://axiomlegaldata.com'),
   alternates: {
+    canonical: '/',
     types: {
       'application/rss+xml': [
         { title: 'Axiom Legal Data Blog RSS Feed', url: '/api/rss' }
       ]
     }
-  }
+  },
+  openGraph: {
+    title: "Axiom Legal Data - Build Unbreakable Legal AI, Faster",
+    description: "TSTR-validated synthetic legal data for AI training. Stop paying lawyers $500/hour for training data.",
+    url: 'https://axiomlegaldata.com',
+    siteName: 'Axiom Legal Data',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Axiom Legal Data - Legal AI Training Platform',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Axiom Legal Data - Build Unbreakable Legal AI, Faster",
+    description: "TSTR-validated synthetic legal data for AI training",
+    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({

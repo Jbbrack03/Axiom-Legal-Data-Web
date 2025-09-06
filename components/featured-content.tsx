@@ -27,19 +27,25 @@ export async function FeaturedContent() {
   // Fallback content if no articles exist
   const fallbackArticles = [
     {
+      _id: "1",
       title: "Why Most Legal AI is Built on a Shaky Foundation: The Data Problem.",
       excerpt:
         "Exploring the critical challenges facing legal AI development and why synthetic data offers a more reliable foundation for building robust systems.",
+      slug: null
     },
     {
+      _id: "2",
       title: "Introducing Our 'PII Shield': A New Standard for Ethical Data in Legal Tech.",
       excerpt:
         "How our comprehensive privacy protection framework ensures complete PII redaction while maintaining data utility for AI training.",
+      slug: null
     },
     {
+      _id: "3",
       title: "Benchmarking Against LegalBench: Putting Our Synthetic Data to the Test.",
       excerpt:
         "Rigorous testing results showing how our synthetic legal data performs against real-world benchmarks and industry standards.",
+      slug: null
     },
   ]
 

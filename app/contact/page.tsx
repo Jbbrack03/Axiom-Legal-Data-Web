@@ -2,6 +2,21 @@ import { Button } from "@/components/ui/button"
 import { Navigation } from "@/components/navigation"
 import { ContactForm } from "@/components/contact-form"
 import { Mail, MapPin, Clock } from "lucide-react"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact Us - Get in Touch | Axiom Legal Data',
+  description: 'Ready to transform your legal data operations? Contact our team for enterprise solutions, partnerships, or technical support. We\'d love to hear from you.',
+  openGraph: {
+    title: 'Contact Us - Get in Touch | Axiom Legal Data',
+    description: 'Ready to transform your legal data operations? Contact our team for enterprise solutions, partnerships, or technical support.',
+    url: 'https://axiomlegaldata.com/contact',
+  },
+  twitter: {
+    title: 'Contact Us - Get in Touch | Axiom Legal Data',
+    description: 'Ready to transform your legal data operations? Contact our team for enterprise solutions, partnerships, or technical support.',
+  },
+}
 
 export default function ContactPage() {
   return (

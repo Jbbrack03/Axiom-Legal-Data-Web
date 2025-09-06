@@ -26,6 +26,7 @@ export interface BlogPost {
   author: {
     name: string
     image: any
+    bio?: any[]
   }
   publishedAt: string
   excerpt: string

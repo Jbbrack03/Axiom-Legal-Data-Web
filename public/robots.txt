@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block admin and api routes
+Disallow: /api/
+Disallow: /studio/
+
+# Sitemap
+Sitemap: https://axiomlegaldata.com/sitemap.xml
